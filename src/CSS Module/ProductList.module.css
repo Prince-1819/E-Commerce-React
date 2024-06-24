@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    /* gap: 1rem; */
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .main {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+}

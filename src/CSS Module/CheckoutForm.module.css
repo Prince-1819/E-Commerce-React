@@ -1,0 +1,9 @@
+.main {
+    width: 30%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    margin-top: 50px;
+}

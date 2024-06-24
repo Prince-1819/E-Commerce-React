@@ -1,0 +1,87 @@
+.heroSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background: linear-gradient(to right, rgb(56, 49, 49), rgb(66, 59, 59));
+    color: white;
+    height: 80vh;
+    margin: 25px;
+    border-radius: 15px;
+}
+
+.textSection {
+    max-width: 40%;
+}
+
+.textSection h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #ffc115;
+}
+
+.textSection p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.shopNowBtn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: transparent;
+    border: 1px solid #ffc115;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.shopNowBtn:hover {
+    background-color: white;
+    color: rgb(56, 49, 49);
+    font-weight: 500;
+}
+
+.imageSection {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shoeImage {
+    width: 400px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.shoeImageSecondary {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .textSection {
+        max-width: 100%;
+    }
+
+    .shoeImage,
+    .shoeImageSecondary {
+        width: 200px;
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .shoeImageSecondary {
+        position: relative;
+        right: 0;
+    }
+}

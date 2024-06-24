@@ -1,0 +1,10 @@
+.containerMain {
+    padding-top: 5rem;
+}
+
+.main {
+    width: 40rem;
+    margin: auto;
+    border: 1px solid rgb(59, 46, 46);
+    box-shadow: 4px 4px 5px rgb(59, 46, 46);
+}

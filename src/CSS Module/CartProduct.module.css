@@ -1,0 +1,50 @@
+.heading {
+    list-style: none;
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    margin: 30px auto;
+}
+
+.heading>* {
+    width: 60px;
+    text-align: center;
+}
+
+.content {
+    list-style: none;
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    margin: 20px auto;
+}
+
+.main {
+    /* width: 60%; */
+    padding: 30px;
+    margin: 0 auto;
+    /* background-color: aliceblue; */
+}
+
+.marginAuto {
+    margin: 0 auto;
+
+}
+
+.w60 {
+    width: 60%;
+}
+
+.checkOutContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 270px;
+}
+
+.checkOutButton {
+    background-color: rgb(56, 49, 49);
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
