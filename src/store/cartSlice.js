@@ -20,64 +20,70 @@ const initialState = {
 
 // Create a slice for the cart with reducers and async thunks
 const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-        // Reducer to increment the quantity of a product locally
-        incrementQuantityLocal: (state, action) => {
-            const existingProduct = state.cartProductList.find((item) => item.productId._id === action.payload);
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            }
-        },
-        // Reducer to decrement the quantity of a product locally
-        decrementQuantityLocal: (state, action) => {
-            const existingProduct = state.cartProductList.find((item) => item.productId._id === action.payload);
-            if (existingProduct && existingProduct.quantity > 1) {
-                existingProduct.quantity -= 1;
-            }
-        },
-        // Reducer to remove a product from the cart locally
-        removeProductLocal: (state, action) => {
-            state.cartProductList = state.cartProductList.filter((item) => item.productId._id !== action.payload);
-        },
+  name: "cart",
+  initialState,
+  reducers: {
+    // Reducer to increment the quantity of a product locally
+    incrementQuantityLocal: (state, action) => {
+      const existingProduct = state.cartProductList.find((item) => item.productId._id === action.payload);
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      }
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchCart.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(fetchCart.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.cartProductList = action.payload;
-            })
-            .addCase(fetchCart.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.payload || action.error.message;
-            });
+
+    decrementQuantityLocal: (state, action) => {
+      const existingProduct = state.cartProductList.find((item) => item.productId._id === action.payload);
+      if (existingProduct) {
+        if (existingProduct.quantity > 1) {
+          existingProduct.quantity -= 1;
+        } else if (existingProduct.quantity === 1) {
+          // Remove the product from the cart
+          state.cartProductList = state.cartProductList.filter((item) => item.productId._id !== action.payload);
+        }
+      }
     },
+
+    // Reducer to remove a product from the cart locally
+    removeProductLocal: (state, action) => {
+      state.cartProductList = state.cartProductList.filter((item) => item.productId._id !== action.payload);
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCart.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCart.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.cartProductList = action.payload;
+      })
+      .addCase(fetchCart.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload || action.error.message;
+      });
+  },
 });
 
 export const { incrementQuantityLocal, decrementQuantityLocal, removeProductLocal } = cartSlice.actions;
 
 // Thunk action to increment the quantity of a product in the cart
 export const incrementQuantityThunk = (productId) => async (dispatch) => {
-    try {
-        await addToCart({ productId }); // Add to cart API call
-        dispatch(incrementQuantityLocal(productId)); // Update state locally
-    } catch (error) {
-        console.error('Failed to increment quantity:', error);
-    }
+  try {
+    await addToCart({ productId }); // Add to cart API call
+    dispatch(incrementQuantityLocal(productId)); // Update state locally
+  } catch (error) {
+    console.error("Failed to increment quantity:", error);
+  }
 };
 
 // Thunk action to decrement the quantity of a product in the cart
 export const decrementQuantityThunk = (productId) => async (dispatch) => {
-    try {
-        await removeFromCart({ productId }); // Remove from cart API call
+  try {
+    await removeFromCart({ productId }); // Remove from cart API call
         dispatch(decrementQuantityLocal(productId)); // Update state locally
-    } catch (error) {
-        console.error('Failed to decrement quantity:', error);
-    }
+  } catch (error) {
+    console.error("Failed to decrement quantity:", error);
+  }
 };
 
 // Thunk action to remove a product from the cart

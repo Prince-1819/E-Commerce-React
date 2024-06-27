@@ -30,6 +30,7 @@ const authSlice = createSlice({
         // Reducer to set the user in the state and localStorage
         setUser: (state, action) => {
             state.user = action.payload;
+            console.log(action);
             localStorage.setItem('user', JSON.stringify(action.payload));  // Store new user in localStorage as a JSON string
         },
 

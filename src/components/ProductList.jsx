@@ -30,7 +30,11 @@ const ProductList = () => {
 
   // Loading state: Show "Loading..." message
   if (loading) {
-    return <div className={styles.main}>Loading...</div>;
+    return (
+      <div className="spinner-grow" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
   }
 
   // Error state: Show error message

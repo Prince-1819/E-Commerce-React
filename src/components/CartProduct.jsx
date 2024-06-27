@@ -33,12 +33,7 @@ export const CartProduct = () => {
 
       {cartProductList.map((product) => (
         <ul className={styles.heading} key={product.productId._id}>
-          <img
-            src={product.productId.image}
-            width={"50px"}
-            height={"40px"}
-            alt={product.productId.title}
-          />
+          <img src={product.productId.image} width={"50px"} height={"40px"} alt={product.productId.title} />
           <li>{product.productId.name}</li>
           <li>RS.{product.productId.price}</li>
           <li className="d-flex">
@@ -63,10 +58,7 @@ export const CartProduct = () => {
 
       {cartProductList.length !== 0 ? (
         <div className={styles.checkOutContainer}>
-          <h4
-            className={styles.checkOutButton}
-            onClick={() => navigate("/checkout")}
-          >
+          <h4 className={styles.checkOutButton} onClick={() => navigate("/checkout")}>
             Check Out
           </h4>
         </div>
